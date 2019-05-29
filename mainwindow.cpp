@@ -51,5 +51,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::addText(const QString &text)
 {
+    anyLayout = new QVBoxLayout();
     anyLayout->addWidget(new QLabel(text, section));
+    section->setContentLayout(*anyLayout);
 }
