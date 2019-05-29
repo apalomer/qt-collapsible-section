@@ -32,17 +32,24 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    Section* section = new Section("Section", 300, ui->centralWidget);
+    section = new Section("Section", 300, ui->centralWidget);
     ui->centralWidget->layout()->addWidget(section);
 
-    auto* anyLayout = new QVBoxLayout();
+    anyLayout = new QVBoxLayout();
     anyLayout->addWidget(new QLabel("Some Text in Section", section));
     anyLayout->addWidget(new QPushButton("Button in Section", section));
 
     section->setContentLayout(*anyLayout);
+
+    connect(ui->listWidget,&QListWidget::currentTextChanged,this,&MainWindow::addText);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::addText(const QString &text)
+{
+    anyLayout->addWidget(new QLabel(text, section));
 }

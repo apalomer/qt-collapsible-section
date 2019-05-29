@@ -22,6 +22,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "Section.h"
 
 namespace Ui {
 class MainWindow;
@@ -35,8 +36,13 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+public slots:
+    void addText(const QString& text);
+
 private:
     Ui::MainWindow *ui;
+    QLayout* anyLayout;
+    Section* section;
 };
 
 #endif // MAINWINDOW_H
